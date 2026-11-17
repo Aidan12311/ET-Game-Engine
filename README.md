@@ -15,18 +15,6 @@ fixed-timestep simulation, and talks to a client over a WebSocket using a small
 JSON protocol.
 
 ## Background
-
-This started as a team microservice project:
-
-| Service        | Stack                       | Role                                                        |
-|----------------|-----------------------------|-------------------------------------------------------------|
-| `game_service` | C++20                       | Authoritative game engine (**the part kept here**)          |
-| `auth_service` | Python / FastAPI / MongoDB  | Users and save storage, consuming save events from RabbitMQ |
-| `gui_service`  | C++ / Vulkan                | 3D client that rendered the world and sent player input     |
-
-Traefik acted as the API gateway, and RabbitMQ carried save events from the
-engine to the auth service.
-
 This repository keeps only the engine. The other services, the gateway and the
 message broker have been removed. The engine's links to them were replaced with
 local equivalents, so it builds and runs **with no other service present**:
